@@ -1,0 +1,35 @@
+name: youth
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/30 * * * * '
+  watch:
+    types: [started]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+         
+      - name: 'Install requirements'
+        run: pip install requests
+        
+      - name: 'run youth' 
+        run: python3 quanx/youth.py 
+        env:
+            YOUTH_HEADER1: ${{ secrets.YOUTH_HEADER1 }}
+            YOUTH_READBODY1: ${{ secrets.YOUTH_READBODY1 }}
+            YOUTH_REDBODY1: ${{ secrets.YOUTH_REDBODY1 }}
+            YOUTH_READTIMEBODY1: ${{ secrets.YOUTH_READTIMEBODY1 }}
+            YOUTH_WITHDRAWBODY1: ${{ secrets.YOUTH_WITHDRAWBODY1 }}
+            BARK: ${{ secrets.BARK }}
+            SCKEY: ${{ secrets.SCKEY }}
+            TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}}
+            TG_USER_ID:  ${{secrets.TG_USER_ID}}
