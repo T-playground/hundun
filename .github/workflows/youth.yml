@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: clone
-        run: |
-          git clone https://github.com/whyour/hundun.git ~/hundun
+#       - name: clone
+#         run: |
+#           git clone https://github.com/whyour/hundun.git ~/hundun
         
       - name: 'Set up Python'
         uses: actions/setup-python@v1
@@ -25,7 +25,7 @@ jobs:
         run: pip install requests
         
       - name: 'run youth' 
-        run: python3 ~/hundun/quanx/youth.py 
+        run: python3 quanx/youth.py 
         env:
             YOUTH_HEADER1: ${{ secrets.YOUTH_HEADER1 }}
             YOUTH_READBODY1: ${{ secrets.YOUTH_READBODY1 }}
